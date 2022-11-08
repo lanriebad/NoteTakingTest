@@ -25,7 +25,8 @@ export class NoteEffects {
       ofType(initDeleteNote),
       tap( action => id = action.id as string),
       exhaustMap(action => this.notesService.deleteNote(action.id)),
-      map( (response: any) => deleteNote({id}))
+      map( (response: any) => deleteNote({id})),
+      tap( () => window.location.href = 'http://localhost:4200/notes ')
     )
   });
 

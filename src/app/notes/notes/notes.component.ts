@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Observable, tap} from "rxjs";
 import {Note} from "../note.model";
 import {selectNotes} from "../note.selectors";
 import {initDeleteNote} from "../note.actions";
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {faEdit} from '@fortawesome/free-solid-svg-icons';
+import {faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {NotesService} from "../notes.service";
 
 @Component({
@@ -20,13 +20,17 @@ export class NotesComponent implements OnInit {
   labels: Observable<any[]> = this.noteService.fetchAllLabels();
 
   constructor(private store: Store,
-              private noteService: NotesService) { }
+              private noteService: NotesService) {
+  }
 
   ngOnInit(): void {
   }
 
   onDeleteNote(id: string | number) {
-    this.store.dispatch(initDeleteNote({id}));
+    const deletePrompt = confirm('do you want to delete this note');
+    if (deletePrompt) {
+      this.store.dispatch(initDeleteNote({id}));
+    }
   }
 
   onFilterNote(term: string) {
