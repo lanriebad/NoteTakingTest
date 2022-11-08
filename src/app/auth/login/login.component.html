@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2 col-lg-4 offset-md-4">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="mt-5">
+        <fieldset>
+          <legend>Login</legend>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" formControlName="username" id="username">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" formControlName="password" id="password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Submit</button>
+        </fieldset>
+        <div class="mt-5">
+          <span>Don't have an account? <a routerLink="/register">Sign Up</a> </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

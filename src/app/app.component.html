@@ -1,0 +1,27 @@
+<div class="d-flex flex-column h-100">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">Notes</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 d-flex justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="notes/new">New Note</a>
+          </li>
+          <li class="nav-item" *ngIf="(isLoggedIn | async) === false">
+            <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item" *ngIf="(isLoggedIn | async)">
+            <a class="nav-link" (click)="onLogout($event)">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="flex-grow-1">
+    <router-outlet></router-outlet>
+  </main>
+</div>

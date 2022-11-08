@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-8 offset-md-2 col-lg-4 offset-md-4">
+      <form [formGroup]="noteForm" (ngSubmit)="onAddNewNote()" class="mt-5">
+        <fieldset>
+          <legend>{{id ? 'Edit' : 'New'}} Note</legend>
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" formControlName="title" id="title">
+          </div>
+          <div class="mb-3" *ngIf="!id">
+            <label for="label" class="form-label">Label</label>
+            <input type="text" class="form-control" formControlName="label" id="label" [ngModel]="label" [ngbTypeahead]="search" [inputFormatter]="formatter"
+                   [resultFormatter]="formatter">
+          </div>
+          <div class="mb-3">
+            <label for="label" class="form-label">Content</label>
+            <textarea type="text" class="form-control" formControlName="content" id="content"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!noteForm.valid">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
